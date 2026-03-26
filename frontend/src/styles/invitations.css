@@ -1,0 +1,195 @@
+/* =========================================================
+   CONVITES — TEMA PREMIUM (Alinhado com MyData)
+   ========================================================= */
+
+.invitations-container {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	width: 100%;
+}
+
+/* ── Cabeçalho Interno ──────────────────────────────────── */
+.invitations-container .invitations-header {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.invitations-container .invitations-title {
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: var(--text-primary);
+	margin: 0;
+}
+
+.invitations-container .invitations-subtitle {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	color: var(--text-secondary);
+	margin: 0;
+}
+
+/* ── Estado Vazio ───────────────────────────────────────── */
+.invitations-container .invitations-empty {
+	padding: 24px 16px;
+	background: var(--bg-sunken);
+	border: 1px dashed var(--border-default);
+	border-radius: var(--radius-card);
+	text-align: center;
+}
+
+.invitations-container .invitations-empty p {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	color: var(--text-secondary);
+	margin: 0;
+}
+
+/* ── Lista e Cartões de Convite ─────────────────────────── */
+.invitations-container .invitations-list {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.invitations-container .invitation-card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 20px 24px;
+	gap: 24px;
+
+	background: var(--bg-sunken);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+
+	transition:
+		transform 0.2s ease,
+		border-color 0.2s ease;
+}
+
+.invitations-container .invitation-card:hover {
+	transform: translateY(-2px);
+	border-color: rgba(196, 164, 90, 0.4); /* Mesmo brilho dourado do myData */
+}
+
+/* ── Conteúdo do Cartão ─────────────────────────────────── */
+.invitations-container .invitation-info {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.invitations-container .invitation-avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+
+	background: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: 50%;
+
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.9rem;
+	font-weight: 700;
+	color: var(--accent);
+}
+
+.invitations-container .invitation-text-group {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+/* Mesma pegada do .stat-label e .info-group label */
+.invitations-container .invitation-label {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: var(--text-secondary);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.invitations-container .workspace-name {
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin: 0;
+	line-height: 1.2;
+}
+
+.invitations-container .sender-info {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	margin: 0;
+}
+
+.invitations-container .sender-info strong {
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+/* ── Botões de Ação (Baseados no btn-edit-outline) ──────── */
+.invitations-container .invitation-actions {
+	display: flex;
+	gap: 12px;
+}
+
+.invitations-container .btn-accept-outline,
+.invitations-container .btn-reject-outline {
+	padding: 8px 16px;
+	background: transparent;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.85rem;
+	font-weight: 600;
+	border-radius: var(--radius-btn);
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+/* Aceitar - Foco Dourado */
+.invitations-container .btn-accept-outline {
+	color: var(--accent);
+	border: 1px solid var(--accent);
+}
+
+.invitations-container .btn-accept-outline:hover {
+	background: var(--accent);
+	color: var(--bg-surface);
+}
+
+/* Rejeitar - Foco Neutro/Erro */
+.invitations-container .btn-reject-outline {
+	color: var(--text-secondary);
+	border: 1px solid var(--border-default);
+}
+
+.invitations-container .btn-reject-outline:hover {
+	background: var(--error-bg);
+	color: var(--error-text);
+	border-color: var(--error-border);
+}
+
+/* ── Responsividade ─────────────────────────────────────── */
+@media (max-width: 640px) {
+	.invitations-container .invitation-card {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.invitations-container .invitation-actions {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+}

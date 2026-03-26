@@ -1,0 +1,300 @@
+/* =========================================================
+   NEW TASK MODAL - ESTILOS ESPECÍFICOS E ISOLADOS
+   ========================================================= */
+
+/* Overlay - Cobre toda a tela */
+.new-task-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.75);
+	backdrop-filter: blur(6px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+	animation: fadeInModal 0.2s ease-out;
+}
+
+/* Modal Container principal */
+.new-task-container {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+	background-color: var(--bg-surface);
+	box-shadow: var(--shadow-card);
+	color: var(--text-primary);
+	font-family: "DM Sans", sans-serif;
+
+	width: 90%;
+	max-width: 550px;
+	max-height: 90vh;
+	overflow-y: auto;
+	padding: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	animation: slideUpModal 0.3s ease-out;
+}
+
+/* Scrollbar do Modal */
+.new-task-container::-webkit-scrollbar {
+	width: 8px;
+}
+.new-task-container::-webkit-scrollbar-thumb {
+	background-color: var(--border-default);
+	border-radius: 10px;
+}
+
+/* Header do Modal */
+.new-task-container .new-task-header h2 {
+	margin: 0 0 8px 0;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--text-primary);
+}
+
+.new-task-container .new-task-header p {
+	margin: 0;
+	font-size: 0.95rem;
+	color: var(--text-secondary);
+}
+
+/* Formulário base */
+.new-task-container .new-task-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+/* Organização em linhas (Prazo/Tag, Status/Prioridade) */
+.new-task-container .row-group {
+	display: flex;
+	gap: 16px;
+}
+
+.new-task-container .row-group .input-group {
+	flex: 1;
+}
+
+.new-task-container .input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.new-task-container .input-group label {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-secondary);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+/* Inputs, Selects e Date */
+.new-task-container input[type="text"],
+.new-task-container input[type="date"],
+.new-task-container select,
+.new-task-container input:not([type="radio"]):not([type="checkbox"]),
+.new-task-container textarea {
+	width: 100%;
+	padding: 12px 16px;
+	border-radius: var(--radius-input);
+	border: 1px solid var(--border-default) !important;
+	background-color: var(--bg-sunken);
+	color: var(--text-primary);
+	font-family: inherit;
+	font-size: 0.95rem;
+	transition: all 0.2s ease;
+	box-sizing: border-box;
+}
+
+.new-task-container input::placeholder {
+	color: var(--text-muted);
+}
+
+.new-task-container input:focus,
+.new-task-container select:focus,
+.new-task-container textarea:focus {
+	outline: none;
+	border-color: var(--accent);
+	box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* ───────────────────────────────────────────────────────── */
+/* Visibilidade (Pública / Privada) - Estilo Card/Toggle     */
+/* ───────────────────────────────────────────────────────── */
+.new-task-container .visibility-options {
+	display: flex;
+	gap: 12px;
+}
+
+.new-task-container .radio-card {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px;
+	border-radius: var(--radius-input);
+	border: 1px solid var(--border-default);
+	background-color: var(--bg-sunken);
+	cursor: pointer;
+	font-weight: 500;
+	color: var(--text-secondary);
+	transition: all 0.2s ease;
+}
+
+.new-task-container .radio-card input[type="radio"] {
+	display: none;
+}
+
+.new-task-container .radio-card:hover {
+	border-color: var(--accent-hover);
+	background-color: rgba(255, 255, 255, 0.03);
+}
+
+.new-task-container .radio-card.selected {
+	border-color: var(--accent);
+	color: var(--accent);
+	background-color: var(--accent-glow);
+}
+
+/* ───────────────────────────────────────────────────────── */
+/* Membros / Responsáveis (Checkboxes)                       */
+/* ───────────────────────────────────────────────────────── */
+.new-task-container .members-list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	max-height: 160px;
+	overflow-y: auto;
+	padding-right: 4px;
+}
+
+.new-task-container .members-list::-webkit-scrollbar {
+	width: 6px;
+}
+.new-task-container .members-list::-webkit-scrollbar-thumb {
+	background-color: var(--border-default);
+	border-radius: 10px;
+}
+
+.new-task-container .member-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 12px;
+	border-radius: var(--radius-input);
+	border: 1px solid var(--border-default);
+	background-color: var(--bg-sunken);
+	cursor: pointer;
+	transition: all 0.2s ease;
+	margin: 0;
+	text-transform: none; /* Sobrescreve uppercase do .input-group label */
+	letter-spacing: normal;
+}
+
+.new-task-container .member-item:hover {
+	border-color: rgba(196, 164, 90, 0.4);
+	background-color: rgba(255, 255, 255, 0.02);
+}
+
+.new-task-container .member-item input[type="checkbox"] {
+	width: 18px;
+	height: 18px;
+	accent-color: var(--accent);
+	cursor: pointer;
+}
+
+.new-task-container .member-info {
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+}
+
+.new-task-container .member-name {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+.new-task-container .member-username {
+	font-size: 0.8rem;
+	color: var(--text-secondary);
+}
+
+/* ───────────────────────────────────────────────────────── */
+/* Ações (Botões)                                            */
+/* ───────────────────────────────────────────────────────── */
+.new-task-container .new-task-actions {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 12px;
+	margin-top: 12px;
+	padding-top: 24px;
+	border-top: 1px solid var(--border-default);
+}
+
+.new-task-container .btn-cancel {
+	padding: 10px 20px;
+	border-radius: var(--radius-btn);
+	font-weight: 600;
+	font-size: 0.95rem;
+	text-decoration: none;
+	color: var(--text-secondary);
+	border: 1px solid var(--border-default);
+	transition: all 0.2s ease;
+}
+
+.new-task-container .btn-cancel:hover {
+	background-color: rgba(255, 255, 255, 0.05);
+	color: var(--text-primary);
+}
+
+.new-task-container .btn-submit {
+	padding: 10px 20px;
+	border-radius: var(--radius-btn);
+	font-weight: 600;
+	font-family: inherit;
+	font-size: 0.95rem;
+	cursor: pointer;
+	border: none;
+	background-color: var(--accent);
+	color: var(--text-inverse);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	transition: all 0.2s ease;
+}
+
+.new-task-container .btn-submit:hover {
+	background-color: var(--accent-hover);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(196, 164, 90, 0.3);
+}
+
+.new-task-container .btn-submit:active {
+	transform: scale(0.98);
+}
+
+/* Animações Keyframes */
+@keyframes fadeInModal {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideUpModal {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

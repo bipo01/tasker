@@ -1,0 +1,192 @@
+/* =========================================================
+   CONFIGURAÇÕES DA CONTA - ESCOPO ISOLADO
+   ========================================================= */
+
+.settings-account-container {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+/* ───────────────────────────────────────────────────────── */
+/* Layout Geral e Tipografia                                 */
+/* ───────────────────────────────────────────────────────── */
+
+.settings-account-container .content-header {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.settings-account-container .content-title {
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: var(--text-primary);
+	margin: 0;
+}
+
+.settings-account-container .content-subtitle {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	color: var(--text-secondary);
+	margin: 0;
+}
+
+.settings-account-container .divider {
+	border: none;
+	height: 1px;
+	background: var(--border-default);
+	margin: 0;
+}
+
+.settings-account-container .personal-info-section {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.settings-account-container .section-header h3 {
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin: 0;
+}
+
+/* ───────────────────────────────────────────────────────── */
+/* Grid de Formulários                                       */
+/* ───────────────────────────────────────────────────────── */
+
+.settings-account-container .info-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+}
+
+.settings-account-container .info-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.settings-account-container .info-group.full-width {
+	grid-column: span 2;
+}
+
+.settings-account-container .info-group label {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--text-secondary);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+/* ───────────────────────────────────────────────────────── */
+/* Inputs e Botões Padrões                                   */
+/* ───────────────────────────────────────────────────────── */
+
+.settings-account-container .settings-input {
+	padding: 12px 16px;
+	background: var(--bg-sunken);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-btn);
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	color: var(--text-primary);
+	width: 100%;
+	box-sizing: border-box;
+	transition: all 0.2s ease;
+	outline: none;
+}
+
+.settings-account-container .settings-input::placeholder {
+	color: var(--text-muted, #737373);
+}
+
+.settings-account-container .settings-input:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 2px rgba(196, 164, 90, 0.2);
+}
+
+.settings-account-container .settings-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 8px;
+}
+
+.settings-account-container .btn-save {
+	padding: 10px 24px;
+	background: var(--accent);
+	color: var(--bg-surface);
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	font-weight: 600;
+	border: none;
+	border-radius: var(--radius-btn);
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.settings-account-container .btn-save:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(196, 164, 90, 0.3);
+}
+
+/* ───────────────────────────────────────────────────────── */
+/* Zona de Perigo (Exclusão)                                 */
+/* ───────────────────────────────────────────────────────── */
+
+.settings-account-container .danger-zone {
+	background: rgba(220, 38, 38, 0.03);
+	border: 1px solid rgba(220, 38, 38, 0.2);
+	padding: 24px;
+	border-radius: var(--radius-card);
+}
+
+.settings-account-container .danger-title {
+	color: #ef4444 !important;
+}
+
+.settings-account-container .danger-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 32px;
+}
+
+.settings-account-container .danger-text h4 {
+	font-family: "DM Sans", sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin: 0 0 4px 0;
+}
+
+.settings-account-container .danger-text p {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+	margin: 0;
+	line-height: 1.5;
+}
+
+.settings-account-container .btn-delete-account {
+	padding: 10px 20px;
+	background: transparent;
+	color: #ef4444;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	font-weight: 600;
+	border: 1px solid #ef4444;
+	border-radius: var(--radius-btn);
+	cursor: pointer;
+	transition: all 0.2s ease;
+	white-space: nowrap;
+}
+
+.settings-account-container .btn-delete-account:hover {
+	background: #ef4444;
+	color: #ffffff;
+}

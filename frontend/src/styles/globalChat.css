@@ -1,0 +1,387 @@
+/* ── Container Principal ───────────────────────────────────── */
+.global-chat-container {
+	display: flex;
+	flex: 1;
+	width: 100%;
+	min-height: 650px;
+	background-color: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-card);
+	overflow: hidden;
+
+	.btn-send:hover:not(:disabled) {
+		background-color: var(--accent-hover);
+		transform: translateY(-1px);
+	}
+
+	.btn-send:active:not(:disabled) {
+		transform: translateY(1px);
+	}
+
+	.btn-send:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+		background-color: var(--text-muted);
+	}
+
+	.participant-item-me {
+		border: 1px solid var(--accent-glow);
+		background: var(--border-default);
+	}
+}
+
+/* Ajuste para o ícone do Lucide no header */
+.global-chat-container .global-icon {
+	width: 48px;
+	height: 48px;
+	border-radius: 12px;
+	background: linear-gradient(135deg, var(--accent), var(--accent-hover, #4f46e5));
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 4px 12px var(--accent-glow, rgba(79, 70, 229, 0.3));
+}
+
+/* Ajuste para o botão de enviar com ícone */
+.global-chat-container .btn-send {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	background-color: var(--accent);
+	color: var(--text-inverse, #fff);
+	border: none;
+	border-radius: var(--radius-btn, 8px);
+	padding: 0 1.5rem;
+	font-family: inherit;
+	font-weight: 600;
+	font-size: 0.95rem;
+	cursor: pointer;
+	transition:
+		background-color 0.2s ease,
+		transform 0.1s ease;
+}
+
+/* ── Sidebar de Participantes (Direita ou Esquerda) ───────── */
+.global-chat-container .chat-sidebar {
+	width: 280px;
+	background-color: var(--bg-surface);
+	border-left: 1px solid var(--border-default); /* Se quiser na esquerda, troque para border-right */
+	display: flex;
+	flex-direction: column;
+	order: 2; /* Coloca a sidebar na direita. Remova se quiser na esquerda */
+}
+
+.global-chat-container .sidebar-header {
+	padding: 1.5rem;
+	border-bottom: 1px solid var(--border-default);
+}
+
+.global-chat-container .sidebar-title {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin: 0 0 0.25rem 0;
+}
+
+.global-chat-container .sidebar-subtitle {
+	font-size: 0.85rem;
+	color: var(--text-muted);
+	margin: 0;
+}
+
+.global-chat-container .participants-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	overflow-y: auto;
+	flex: 1;
+}
+
+.global-chat-container .participant-item {
+	display: flex;
+	align-items: center;
+	padding: 0.85rem 1.5rem;
+	gap: 12px;
+	transition: background-color 0.2s ease;
+}
+
+.global-chat-container .participant-avatar {
+	position: relative;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background-color: var(--bg-sunken);
+	color: var(--text-secondary);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+	font-size: 0.9rem;
+	border: 1px solid var(--border-default);
+}
+
+.global-chat-container .participant-name {
+	color: var(--text-secondary);
+	font-size: 0.95rem;
+	font-weight: 500;
+	flex: 1;
+}
+
+/* ── Área Principal do Chat ──────────────────────────────── */
+.global-chat-container .chat-main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--bg-void);
+	order: 1; /* Mantém a área de chat na esquerda */
+}
+
+/* ── Cabeçalho do Chat ───────────────────────────────────── */
+.global-chat-container .chat-header {
+	display: flex;
+	align-items: center;
+	padding: 1.25rem 1.5rem;
+	background-color: var(--bg-surface);
+	border-bottom: 1px solid var(--border-default);
+	gap: 16px;
+}
+
+.global-chat-container .global-icon {
+	width: 48px;
+	height: 48px;
+	border-radius: 12px;
+	background: linear-gradient(135deg, var(--accent), var(--accent-hover, #4f46e5));
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	box-shadow: 0 4px 12px var(--accent-glow, rgba(79, 70, 229, 0.3));
+}
+
+.global-chat-container .chat-header-info h2 {
+	margin: 0 0 0.2rem 0;
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: var(--text-primary);
+	letter-spacing: -0.3px;
+}
+
+.global-chat-container .chat-header-info p {
+	margin: 0;
+	font-size: 0.85rem;
+	color: var(--text-muted);
+}
+
+/* ── Histórico de Mensagens ──────────────────────────────── */
+.global-chat-container .chat-history {
+	flex: 1;
+	padding: 1.5rem;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.user + .another {
+	margin-top: 3rem;
+}
+
+.user {
+	margin-top: 0.3rem;
+}
+
+.global-chat-container .date-divider {
+	text-align: center;
+	position: relative;
+	margin: 1.5rem 0;
+}
+
+.global-chat-container .date-divider::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background-color: var(--border-default);
+	z-index: 1;
+}
+
+.global-chat-container .date-divider span {
+	position: relative;
+	z-index: 2;
+	background-color: var(--bg-void);
+	padding: 0 1rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* Estrutura da Mensagem (Grupo) */
+.global-chat-container .message-row {
+	display: flex;
+	align-items: flex-end;
+	gap: 12px;
+	max-width: 100%;
+}
+
+.global-chat-container .message-row.received {
+	align-self: flex-start;
+}
+
+.global-chat-container .message-row.sent {
+	align-self: flex-end;
+	flex-direction: row-reverse;
+}
+
+.global-chat-container .message-avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background-color: var(--bg-sunken);
+	color: var(--text-secondary);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+	font-size: 0.8rem;
+	border: 1px solid var(--border-default);
+	flex-shrink: 0;
+	margin-bottom: 4px; /* Alinha com a base do balão */
+}
+
+.global-chat-container .message-content {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.global-chat-container .message-sender {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--text-secondary);
+	margin-left: 4px;
+}
+
+.global-chat-container .sent .message-sender {
+	display: none; /* Não precisa mostrar seu próprio nome no balão */
+}
+
+.global-chat-container .message-bubble {
+	position: relative;
+	padding: 0.85rem 1.2rem;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	color: var(--text-primary);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.global-chat-container .received .message-bubble {
+	background-color: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: 14px 14px 14px 4px; /* Canto inferior esquerdo reto */
+}
+
+.global-chat-container .sent .message-bubble {
+	background-color: var(--bg-hover);
+	border: 1px solid var(--accent);
+	border-radius: 14px 14px 4px 14px; /* Canto inferior direito reto */
+}
+
+.global-chat-container .message-time {
+	display: inline-block;
+	font-size: 0.65rem;
+	font-weight: 500;
+	color: var(--text-muted);
+	margin-left: 12px;
+	float: right;
+	margin-top: 8px;
+	user-select: none;
+}
+
+.global-chat-container .sent .message-time {
+	color: var(--accent);
+	opacity: 0.8;
+}
+
+/* ── Área de Input ───────────────────────────────────────── */
+.global-chat-container .chat-input-area {
+	display: flex;
+	gap: 12px;
+	padding: 1.25rem 1.5rem;
+	background-color: var(--bg-surface);
+	border-top: 1px solid var(--border-default);
+}
+
+.global-chat-container .chat-input {
+	flex: 1;
+	background-color: var(--bg-sunken);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-input, 8px);
+	padding: 0.9rem 1.2rem;
+	color: var(--text-primary);
+	font-family: inherit;
+	font-size: 0.95rem;
+	transition: all 0.2s ease;
+	outline: none;
+}
+
+.global-chat-container .chat-input::placeholder {
+	color: var(--text-muted);
+}
+
+.global-chat-container .chat-input:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px var(--accent-glow, rgba(79, 70, 229, 0.15));
+	background-color: var(--bg-surface);
+}
+
+.global-chat-container .btn-send {
+	background-color: var(--accent);
+	color: var(--text-inverse, #fff);
+	border: none;
+	border-radius: var(--radius-btn, 8px);
+	padding: 0 1.8rem;
+	font-family: inherit;
+	font-weight: 600;
+	font-size: 0.95rem;
+	cursor: pointer;
+	transition:
+		background-color 0.2s ease,
+		transform 0.1s ease;
+}
+
+.global-chat-container .btn-send:hover {
+	background-color: var(--accent-hover);
+	transform: translateY(-1px);
+}
+
+.global-chat-container .btn-send:active {
+	transform: translateY(1px);
+}
+
+/* ── Estilização da Barra de Rolagem (Scrollbar) ────────── */
+.global-chat-container .chat-history::-webkit-scrollbar {
+	width: 6px; /* Bem fina e elegante */
+}
+
+.global-chat-container .chat-history::-webkit-scrollbar-track {
+	background: transparent; /* Fundo transparente para não poluir o visual */
+	margin: 4px 0; /* Dá um leve respiro nas pontas */
+}
+
+.global-chat-container .chat-history::-webkit-scrollbar-thumb {
+	background-color: var(--border-default); /* Cor base neutra */
+	border-radius: 10px; /* Bordas arredondadas */
+	transition: background-color 0.2s ease;
+}
+
+/* Quando o usuário passa o mouse por cima do scroll */
+.global-chat-container .chat-history::-webkit-scrollbar-thumb:hover {
+	background-color: var(--text-muted); /* Fica um pouco mais escuro/visível no hover */
+}

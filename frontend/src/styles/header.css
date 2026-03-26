@@ -1,0 +1,143 @@
+/* =========================================================
+   HEADER — TEMA PREMIUM (INDIGO & GOLD)
+   ========================================================= */
+
+.app-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+
+	/* Encaixa como um card no topo do seu layout */
+	padding: 16px 24px;
+	background: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+	box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+
+	/* Garante que o header não seja esmagado pelo flexbox */
+	flex-shrink: 0;
+}
+
+/* Perfil do Usuário (Lado Esquerdo) */
+.user-profile {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+/* Avatar (Círculo com as iniciais douradas) */
+.user-avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+
+	background: var(--bg-sunken);
+	border: 1px solid var(--border-default);
+	border-radius: 50%;
+
+	color: var(--accent);
+	font-family: "DM Sans", sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+
+	/* Um leve brilho interno para dar profundidade */
+	box-shadow: inset 0 0 0 1px rgba(196, 164, 90, 0.1);
+}
+
+/* Informações de Texto */
+.user-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.user-name {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+.user-email {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.8rem;
+	color: var(--text-secondary);
+}
+
+/* Ações (Lado Direito) */
+.header-actions {
+	display: flex;
+	align-items: center;
+}
+
+/* Botão de Logout (Estilo "Ghost" para não competir com botões primários) */
+.btn-logout {
+	padding: 8px 16px;
+	text-decoration: none;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-secondary);
+
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: var(--radius-btn);
+
+	transition: all 0.2s ease;
+}
+
+/* Hover do botão de Sair */
+.btn-logout:hover {
+	color: var(--text-primary);
+	background: rgba(255, 255, 255, 0.03);
+	border-color: var(--border-default);
+}
+
+.avatar-container {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.notification-badge {
+	position: absolute;
+	top: -4px;
+	right: -4px;
+
+	/* Integração com as cores do tema Premium */
+	background-color: var(--accent); /* Usa o dourado do tema para chamar atenção de forma elegante */
+	color: var(--bg-surface); /* O texto fica da cor do fundo do card para dar alto contraste */
+
+	/* Tipografia alinhada ao resto do header */
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.7rem;
+	font-weight: 700;
+
+	/* Ajuste de tamanho tipo "pílula" (redondo para 1 dígito, oval para 99+) */
+	min-width: 20px;
+	height: 20px;
+	padding: 0 5px;
+	border-radius: 10px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	/* O truque do recorte: a borda tem a mesma cor do fundo do header */
+	border: 2px solid var(--bg-surface);
+
+	/* Sombra sutil para não parecer "chapado" em cima do avatar */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+/* Opcional: Efeito de erro ao clicar/hover no sair, se preferir uma ação destrutiva */
+/*
+.btn-logout:hover {
+    color: var(--error-text);
+    background: var(--error-bg);
+    border-color: var(--border-error);
+}
+*/

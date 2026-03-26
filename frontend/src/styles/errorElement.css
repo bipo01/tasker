@@ -1,0 +1,138 @@
+/* ── Container Principal do Erro ────────────────────────────── */
+.error-container {
+	display: flex;
+	flex: 1; /* Ocupa todo o espaço restante do #root flex-col */
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 60vh;
+	font-family: "DM Sans", sans-serif;
+	padding: 2rem;
+}
+
+.error-container .error-card {
+	background-color: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-card);
+	padding: 3.5rem 3rem;
+	max-width: 480px;
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	position: relative;
+	overflow: hidden;
+}
+
+/* Brilho vermelho muito sutil e elegante no topo do card */
+.error-container .error-card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3px;
+	background: linear-gradient(90deg, transparent, var(--error-text), transparent);
+	opacity: 0.7;
+}
+
+/* Ícone de Alerta */
+.error-container .error-icon-wrapper {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	background-color: var(--error-bg);
+	border: 1px solid var(--error-border);
+	color: var(--error-text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5rem;
+	box-shadow: 0 0 32px rgba(127, 29, 29, 0.3); /* Glow sutil do fundo de erro */
+}
+
+/* Tipografia Mista para um ar editorial/premium */
+.error-container .error-title {
+	font-family: "DM Serif Display", serif; /* Trazendo a fonte serifada para o destaque */
+	font-size: 2.2rem;
+	font-weight: 400;
+	color: var(--text-primary);
+	margin: 0;
+	line-height: 1.1;
+	letter-spacing: -0.5px;
+}
+
+.error-container .error-message {
+	font-size: 1.05rem;
+	color: var(--text-secondary);
+	margin: 0;
+	line-height: 1.6;
+}
+
+/* Badge técnica de código do erro (ex: 404, 500) */
+.error-container .error-code {
+	display: inline-flex;
+	align-items: center;
+	background-color: var(--bg-sunken);
+	border: 1px solid var(--border-default);
+	color: var(--text-muted);
+	font-size: 0.85rem;
+	font-family: monospace; /* Fonte mono para parecer código/técnico */
+	padding: 6px 14px;
+	border-radius: 6px;
+	margin-top: -0.5rem;
+	letter-spacing: 1px;
+}
+
+/* Área de Botões */
+.error-container .error-actions {
+	display: flex;
+	gap: 1rem;
+	width: 100%;
+	margin-top: 1.5rem;
+}
+
+.error-container .error-btn-primary,
+.error-container .error-btn-secondary {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 0.85rem 1.5rem;
+	border-radius: var(--radius-btn);
+	font-family: inherit;
+	font-weight: 600;
+	font-size: 0.95rem;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+/* Botão principal usando a cor branca/clara do seu tema para contraste máximo */
+.error-container .error-btn-primary {
+	background-color: var(--text-primary);
+	color: var(--bg-void);
+	border: none;
+}
+
+.error-container .error-btn-primary:hover {
+	background-color: var(--accent); /* Transita para o dourado ao passar o mouse */
+	color: var(--text-inverse);
+	transform: translateY(-2px);
+}
+
+/* Botão secundário vazado */
+.error-container .error-btn-secondary {
+	background-color: transparent;
+	color: var(--text-primary);
+	border: 1px solid var(--border-default);
+}
+
+.error-container .error-btn-secondary:hover {
+	background-color: var(--bg-hover);
+	border-color: var(--text-secondary);
+	transform: translateY(-2px);
+}

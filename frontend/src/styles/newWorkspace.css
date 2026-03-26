@@ -1,0 +1,100 @@
+/* =========================================================
+   MODAL NOVO WORKSPACE — TEMA PREMIUM (INDIGO & GOLD)
+   ========================================================= */
+
+/* Fundo escurecido que cobre toda a tela */
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(4px); /* Efeito de vidro (glassmorphism) */
+
+	z-index: 1000; /* Garante que fique por cima de tudo */
+
+	/* Animação suave de entrada */
+	animation: fadeIn 0.2s ease-out;
+}
+
+/* O Modal em si */
+.new-workspace-dialog {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	width: 100%;
+	max-width: 500px;
+	margin: 10% auto; /* Reseta o margin padrão do <dialog> */
+	padding: 32px;
+
+	background: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+	box-shadow:
+		0 24px 48px rgba(0, 0, 0, 0.4),
+		0 0 0 1px rgba(196, 164, 90, 0.1); /* Sombra elegante */
+
+	/* Animação do modal subindo levemente */
+	animation: slideUp 0.3s ease-out;
+
+	/* Cabeçalho do Modal */
+	.dialog-header {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	.dialog-title {
+		font-family: "DM Serif Display", serif;
+		font-size: 1.8rem;
+		font-weight: 400;
+		color: var(--text-primary);
+		margin: 0;
+	}
+
+	.dialog-subtitle {
+		font-family: "DM Sans", sans-serif;
+		font-size: 0.95rem;
+		color: var(--text-secondary);
+		margin: 0;
+	}
+
+	/* Formulário do Modal */
+	.dialog-form {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	/* Ações (Botões no rodapé) */
+	.dialog-actions {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 16px;
+		margin-top: 12px;
+	}
+}
+
+/* Animações Keyframes */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px) scale(0.98);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}

@@ -1,0 +1,413 @@
+/* Escopo restrito ao componente Messages */
+.messages-container {
+	display: flex;
+	flex: 1;
+	width: 100%;
+	min-height: 650px;
+	background-color: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-card);
+	overflow: hidden;
+
+	.date-message {
+		text-align: center;
+		color: white;
+		background: var(--bg-hover);
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		width: 50%;
+		margin: 0.5rem auto;
+	}
+
+	.date-divider {
+		text-align: center;
+		position: relative;
+		margin: 1.5rem 0;
+	}
+
+	.date-divider::before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background-color: var(--border-default);
+		z-index: 1;
+	}
+
+	.date-divider span {
+		position: relative;
+		z-index: 2;
+		background-color: var(--bg-void);
+		padding: 0 1rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	/* ── Estilização da Barra de Rolagem (Scrollbar) ────────── */
+	.chat-history::-webkit-scrollbar {
+		width: 6px; /* Bem fina e elegante */
+	}
+
+	.chat-history::-webkit-scrollbar-track {
+		background: transparent; /* Fundo transparente para não poluir o visual */
+		margin: 4px 0; /* Dá um leve respiro nas pontas */
+	}
+
+	.chat-history::-webkit-scrollbar-thumb {
+		background-color: var(--border-default); /* Cor base neutra */
+		border-radius: 10px; /* Bordas arredondadas */
+		transition: background-color 0.2s ease;
+	}
+
+	/* Quando o usuário passa o mouse por cima do scroll */
+	.chat-history::-webkit-scrollbar-thumb:hover {
+		background-color: var(--text-muted); /* Fica um pouco mais escuro/visível no hover */
+	}
+}
+
+/* Sidebar lateral com a lista de membros */
+.messages-container .messages-sidebar {
+	width: 320px;
+	background-color: var(--bg-surface);
+	border-right: 1px solid var(--border-default);
+	display: flex;
+	flex-direction: column;
+}
+
+.messages-container .sidebar-title {
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	padding: 1.5rem;
+	margin: 0;
+	border-bottom: 1px solid var(--border-default);
+}
+
+.messages-container .members-list {
+	list-style: none;
+	padding: 0.5rem;
+	margin: 0;
+	overflow-y: auto;
+	flex: 1;
+	border-radius: 0;
+}
+
+/* Item da lista de usuários */
+.messages-container .member-item {
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	padding: 1rem 1.5rem;
+	gap: 14px;
+	cursor: pointer;
+	border-left: 3px solid transparent;
+	transition:
+		background-color 0.2s ease,
+		border-left-color 0.2s ease;
+}
+
+.messages-container .member-item:hover {
+	background-color: var(--bg-hover);
+	border-left-color: var(--accent);
+}
+
+/* Avatar do usuário (Letra inicial) */
+.messages-container .member-avatar {
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	background-color: var(--bg-sunken);
+	color: var(--accent);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+	font-size: 1rem;
+	border: 1px solid var(--border-default);
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Nome do usuário */
+.messages-container .member-name {
+	color: var(--text-secondary);
+	font-size: 0.95rem;
+	font-weight: 500;
+	flex: 1;
+	transition: color 0.2s ease;
+}
+
+.messages-container .member-item:hover .member-name {
+	color: var(--text-primary);
+}
+
+/* Indicador visual (ponto) para dar um ar mais técnico/maduro */
+.messages-container .status-indicator {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: var(--border-default);
+	transition: background-color 0.2s ease;
+}
+
+.messages-container .member-item:hover .status-indicator {
+	background-color: var(--accent);
+	box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ── Layout da Área Principal do Chat ────────────────────── */
+.messages-container .messages-main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--bg-void);
+	width: 100%; /* Garante que ocupe o restante do espaço */
+	/* Removemos o align-items: center daqui para não esmagar o layout! */
+}
+
+/* O alinhamento centralizado agora fica restrito SOMENTE ao estado vazio */
+.messages-container .messages-main.empty {
+	align-items: center;
+	justify-content: center;
+}
+
+.messages-container .empty-state {
+	text-align: center;
+	color: var(--text-muted);
+	font-family: "DM Sans", sans-serif;
+	font-size: 1rem;
+	font-weight: 500;
+	user-select: none;
+}
+
+/* ── Cabeçalho do Chat ───────────────────────────────────── */
+.messages-container .chat-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between; /* Empurra o perfil pra esquerda e o X pra direita */
+	width: 100%;
+	padding: 1.1rem 1.5rem;
+	background-color: var(--bg-surface);
+	border-bottom: 1px solid var(--border-default);
+}
+
+.messages-container .chat-header-profile {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.messages-container .chat-header .member-avatar.small {
+	width: 36px;
+	height: 36px;
+	font-size: 0.9rem;
+}
+
+.messages-container .chat-header-info h4 {
+	margin: 0;
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+.messages-container .chat-header-info .status-text {
+	font-size: 0.8rem;
+	color: var(--text-secondary);
+}
+
+/* Botão Fechar (X) */
+.messages-container .btn-close-chat {
+	background: transparent;
+	border: none;
+	color: var(--text-secondary);
+	font-size: 1.8rem;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0 8px;
+	border-radius: 6px;
+	transition:
+		color 0.2s ease,
+		background-color 0.2s ease;
+}
+
+.messages-container .btn-close-chat:hover {
+	color: var(--error-text);
+	background-color: var(--error-bg);
+}
+
+/* ── Histórico de Mensagens (Balões) ─────────────────────── */
+.messages-container .chat-history {
+	flex: 1;
+	width: 100%;
+	padding: 1.5rem;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.messages-container .message-wrapper {
+	display: flex;
+	flex-direction: column;
+	max-width: 100%; /* Limita a largura do balão para não cruzar a tela toda */
+}
+
+/* Mensagem recebida na ESQUERDA */
+.messages-container .message-wrapper.received {
+	align-self: flex-start;
+	align-items: flex-start;
+}
+
+/* Mensagem enviada na DIREITA */
+.messages-container .message-wrapper.sent {
+	align-self: flex-end;
+	align-items: flex-end;
+}
+
+/* ── Histórico de Mensagens (Balões) ─────────────────────── */
+/* ... (mantenha as classes .chat-history e .message-wrapper como estavam) ... */
+
+.messages-container .message-bubble {
+	position: relative; /* Transforma o balão na âncora para a hora */
+	padding: 0.85rem 1.1rem;
+	padding-bottom: 1.4rem; /* Cria um "degrau" invisível embaixo para a hora não sobrepor o texto */
+	font-size: 0.95rem;
+	line-height: 1.5;
+	color: var(--text-primary);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	min-width: 80px; /* Garante que mensagens curtas tipo "Ok" tenham espaço para a hora */
+}
+
+/* Estilo da mensagem recebida */
+.messages-container .received .message-bubble {
+	background-color: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: 0 14px 14px 14px;
+}
+
+/* Estilo da mensagem enviada */
+.messages-container .sent .message-bubble {
+	background-color: var(--bg-hover);
+	border: 1px solid var(--accent);
+	border-radius: 14px 0 14px 14px;
+}
+
+/* A hora posicionada milimetricamente no cantinho */
+.messages-container .message-time {
+	position: absolute;
+	bottom: 4px;
+	right: 10px;
+	font-size: 0.65rem;
+	font-weight: 500;
+	color: var(--text-muted);
+	user-select: none; /* Impede que o usuário copie a hora sem querer ao copiar o texto */
+}
+
+/* Opcional: Deixar a hora da mensagem enviada um pouco mais brilhante para combinar com o destaque */
+.messages-container .sent .message-time {
+	color: var(--accent);
+	opacity: 0.7;
+}
+
+/* ── Área de Input ───────────────────────────────────────── */
+.messages-container .chat-input-area {
+	display: flex;
+	width: 100%;
+	gap: 12px;
+	padding: 1.2rem 1.5rem;
+	background-color: var(--bg-surface);
+	border-top: 1px solid var(--border-default);
+}
+
+.messages-container .chat-input {
+	flex: 1; /* Faz o input esticar e empurrar o botão para a direita */
+	background-color: var(--bg-sunken);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-input);
+	padding: 0.85rem 1rem;
+	color: var(--text-primary);
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	transition: all 0.2s ease;
+	outline: none;
+}
+
+.messages-container .chat-input::placeholder {
+	color: var(--text-muted);
+}
+
+.messages-container .chat-input:focus {
+	border-color: var(--border-focus);
+	box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.messages-container .btn-send {
+	background-color: var(--accent);
+	color: var(--text-inverse);
+	border: none;
+	border-radius: var(--radius-btn);
+	padding: 0 1.5rem;
+	font-family: "DM Sans", sans-serif;
+	font-weight: 600;
+	font-size: 0.95rem;
+	cursor: pointer;
+	transition:
+		background-color 0.2s ease,
+		transform 0.1s ease;
+}
+
+.messages-container .btn-send:hover:not(:disabled) {
+	background-color: var(--accent-hover);
+	transform: translateY(-1px);
+}
+
+.messages-container .btn-send:active:not(:disabled) {
+	transform: translateY(1px);
+}
+
+.messages-container .btn-send:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	background-color: var(--text-muted);
+}
+/* ── Estado Ativo na Sidebar ─────────────────────────────── */
+.messages-container .member-active {
+	background-color: var(--bg-hover);
+	border-left-color: var(--accent);
+}
+
+.messages-container .member-active .member-name {
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+.messages-container .member-active .member-avatar {
+	border-color: var(--accent);
+	box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.load-new-messages {
+	background: var(--accent);
+	padding: 0.5rem;
+	width: fit-content;
+	margin: 0 auto;
+	border-radius: 0.3rem;
+	cursor: pointer;
+	border: none;
+	outline: none;
+
+	&:hover {
+		background: var(--accent-hover);
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
+}

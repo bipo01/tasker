@@ -1,0 +1,707 @@
+/* =========================================================
+   PROJECTS / BOARD PREMIUM — Baseado em REM
+   ========================================================= */
+
+/* Container Principal - Ocupa toda a tela restante */
+.projects-container {
+	display: flex;
+	gap: 1rem;
+	width: 100%;
+
+	margin: 0;
+	padding: 0;
+
+	/* Mágica do Flexbox para ocupar 100% da altura sem vazar */
+	flex: 1;
+	height: 100%;
+	min-height: 0;
+	overflow: hidden;
+}
+
+/* Ícones base */
+.ico {
+	width: 1.125rem;
+	height: 1.125rem;
+	flex-shrink: 0;
+}
+.ico--muted {
+	color: var(--text-secondary);
+}
+
+/* ───────────────────────────────────────────────────────
+   SIDEBAR
+   ─────────────────────────────────────────────────────── */
+.project-sidebar {
+	width: 20rem; /* ~320px */
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+
+	/* Acompanha a altura máxima */
+	height: 100%;
+	min-height: 0;
+
+	background: var(--bg-surface);
+	border: 0.0625rem solid var(--border-default);
+	border-radius: 1rem;
+	box-shadow: 0 0.5rem 1.5rem -0.5rem rgba(0, 0, 0, 0.3);
+	overflow-y: auto;
+}
+
+.sidebar-header {
+	padding: 1.75rem 1.5rem 1.25rem;
+	border-bottom: 0.0625rem solid var(--border-default);
+}
+
+.sidebar-brand {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	margin: 1rem 0 1.5rem;
+}
+
+.sidebar-logo {
+	font-family: "DM Serif Display", serif;
+	font-size: 1.8rem;
+	color: var(--text-primary);
+	background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.sidebar-subtitle {
+	color: var(--text-secondary);
+	font-size: 0.875rem;
+	margin: 0;
+}
+
+/* Inputs da Sidebar */
+.input-ico {
+	position: relative;
+}
+.input-ico .ico {
+	position: absolute;
+	left: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.input-ico input {
+	width: 100%;
+	padding: 0.875rem 1rem 0.875rem 2.75rem;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	color: var(--text-primary);
+	background: var(--bg-sunken);
+	border: 0.0625rem solid var(--border-default);
+	border-radius: 0.75rem;
+	outline: none;
+	transition: all 0.2s ease;
+}
+.input-ico input:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 0.125rem var(--accent-glow);
+}
+
+.sidebar-nav {
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.sidebar-block-title {
+	color: var(--text-secondary);
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	margin: 2rem 0 1rem;
+}
+
+.filter-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+}
+
+.filter-label {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--text-secondary);
+	margin-bottom: 0.375rem;
+	display: block;
+}
+
+.sidebar-nav select {
+	width: 100%;
+	padding: 0.75rem;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.875rem;
+	color: var(--text-primary);
+	background: var(--bg-sunken);
+	border: 0.0625rem solid var(--border-default);
+	border-radius: 0.5rem;
+	outline: none;
+}
+
+.sidebar-btn {
+	width: 100%;
+	padding: 0.75rem;
+	margin-top: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	background: transparent;
+	color: var(--text-primary);
+	border: 0.0625rem solid var(--border-default);
+	border-radius: 0.5rem;
+	font-weight: 600;
+	font-size: 0.875rem;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+.sidebar-btn:hover {
+	background: rgba(255, 255, 255, 0.05);
+}
+
+/* Links do Menu Sidebar */
+.sidebar-link.active {
+	background: var(--bg-sunken);
+}
+
+.sidebar-links {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.sidebar-link {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.75rem;
+	color: var(--text-secondary);
+	text-decoration: none;
+	border-radius: 0.5rem;
+	transition: all 0.2s ease;
+	font-weight: 500;
+	font-size: 0.9rem;
+}
+.sidebar-link:hover {
+	background: rgba(255, 255, 255, 0.03);
+	color: var(--text-primary);
+}
+.sidebar-pill {
+	margin-left: auto;
+	background: var(--accent);
+	color: var(--bg-surface);
+	font-size: 0.7rem;
+	font-weight: 700;
+	padding: 0.125rem 0.5rem;
+	border-radius: 1rem;
+}
+
+/* ───────────────────────────────────────────────────────
+   MAIN / TOPBAR & SEGMENTED CONTROL
+   ─────────────────────────────────────────────────────── */
+.project-main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	/* Respeita a altura container limitando o crescimento */
+	height: 100%;
+	min-height: 0;
+	overflow: hidden;
+}
+
+.project-topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap; /* Ajuda a não quebrar em telas médias */
+	gap: 1.5rem;
+	padding: 1.5rem 2rem;
+
+	background: var(--bg-surface);
+	border: 0.0625rem solid var(--border-default);
+	border-radius: 1rem;
+	flex-shrink: 0;
+}
+
+.project-title {
+	display: flex;
+	flex-direction: column;
+}
+
+.breadcrumbs {
+	color: var(--text-secondary);
+	font-size: 0.85rem;
+	margin-bottom: 0.5rem;
+}
+.crumb-sep {
+	margin: 0 0.5rem;
+	opacity: 0.5;
+}
+.crumb-strong {
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+.project-topbar-actions {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+}
+
+/* Filtros em Abas (Segmented Control) */
+.status-toggles {
+	display: flex;
+	align-items: center;
+	background: var(--bg-sunken);
+	padding: 0.375rem;
+	border-radius: 0.75rem;
+	border: 0.0625rem solid var(--border-default);
+	gap: 0.25rem;
+}
+
+.status-toggle-btn {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: transparent;
+	border: 0.0625rem solid transparent; /* Prevents layout shift */
+	padding: 0.625rem 1rem;
+	border-radius: 0.5rem;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-secondary);
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.status-toggle-btn:hover {
+	color: var(--text-primary);
+	background: rgba(255, 255, 255, 0.02);
+}
+
+/* Estado Ativo do Botão Segmented */
+.status-toggle-btn.active {
+	background: var(--bg-surface);
+	color: var(--text-primary);
+	box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);
+	border: 0.0625rem solid var(--border-default);
+}
+
+/* Bolinhas Indicadoras no Botão */
+.board-dot {
+	width: 0.625rem;
+	height: 0.625rem;
+	border-radius: 50%;
+	transition: transform 0.2s ease;
+}
+
+.status-toggle-btn.active .board-dot {
+	transform: scale(1.2);
+}
+
+.board-dot--todo {
+	background: #b8975a;
+	box-shadow: 0 0 0.25rem rgba(184, 151, 90, 0.4);
+}
+.board-dot--doing {
+	background: #4f86ff;
+	box-shadow: 0 0 0.25rem rgba(79, 134, 255, 0.4);
+}
+.board-dot--done {
+	background: #22c55e;
+	box-shadow: 0 0 0.25rem rgba(34, 197, 94, 0.4);
+}
+
+/* Botões Padrão Topbar */
+.action-buttons {
+	display: flex;
+	gap: 0.75rem;
+}
+
+.topbar-btn {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.625rem 1rem;
+	background: transparent;
+	border: 0.0625rem solid var(--border-default);
+	color: var(--text-primary);
+	border-radius: 0.5rem;
+	font-weight: 600;
+	font-size: 0.875rem;
+	cursor: pointer;
+	transition: all 0.2s;
+	text-decoration: none;
+}
+.topbar-btn:hover {
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.topbar-btn--primary {
+	background: var(--accent);
+	color: var(--bg-surface);
+	border: none;
+}
+.topbar-btn--primary:hover {
+	background: var(--accent);
+	transform: translateY(-0.125rem);
+	box-shadow: 0 0.25rem 0.75rem var(--accent-glow);
+}
+
+/* ───────────────────────────────────────────────────────
+   BOARD GRANDE (O Grid em si)
+   ─────────────────────────────────────────────────────── */
+.board-large {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+
+	/* Mágica para o conteúdo interno rolar sem empurrar a página */
+	min-height: 0;
+
+	background: var(--bg-surface);
+	border: 0.0625rem solid var(--border-default);
+	border-radius: 1rem;
+	overflow: hidden;
+}
+
+.board-header {
+	padding: 1.5rem 2rem;
+	border-bottom: 0.0625rem solid var(--border-default);
+	background: rgba(255, 255, 255, 0.01);
+	flex-shrink: 0;
+}
+
+.board-status-info {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.board-status-info h2 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin: 0;
+}
+
+.task-counter {
+	background: rgba(255, 255, 255, 0.05);
+	padding: 0.125rem 0.625rem;
+	border-radius: 1rem;
+	font-size: 0.85rem;
+	font-weight: 700;
+	color: var(--text-secondary);
+}
+
+/* GRID DE TAREFAS RESPONSIVO */
+.tasks-grid {
+	flex: 1;
+	overflow-y: auto; /* Scroll apenas nos cards */
+	padding: 2rem;
+
+	display: grid;
+	/* Usa min(100%, 22rem) para garantir que não quebra em celulares mt finos */
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+	gap: 1.5rem;
+	align-content: flex-start; /* Evita que os cards se estiquem sozinhos se tiver poucos */
+}
+
+/* Scrollbar Personalizada para o Grid */
+.tasks-grid::-webkit-scrollbar {
+	width: 0.5rem;
+}
+.tasks-grid::-webkit-scrollbar-track {
+	background: transparent;
+}
+.tasks-grid::-webkit-scrollbar-thumb {
+	background: var(--border-default);
+	border-radius: 0.5rem;
+}
+.tasks-grid::-webkit-scrollbar-thumb:hover {
+	background: var(--text-secondary);
+}
+
+.empty-board {
+	grid-column: 1 / -1;
+	text-align: center;
+	padding: 4rem;
+	color: var(--text-secondary);
+	font-size: 1rem;
+	font-style: italic;
+}
+
+/* ───────────────────────────────────────────────────────
+   RESPONSIVO / MEDIA QUERIES
+   ─────────────────────────────────────────────────────── */
+@media (max-width: 64rem) {
+	/* ~1024px */
+	.projects-container {
+		flex-direction: column;
+		overflow-y: auto; /* Libera rolagem geral em telas menores */
+	}
+
+	.project-sidebar {
+		width: 100%;
+		max-height: 25rem; /* Evita que a sidebar domine a tela toda no mobile */
+		flex-shrink: 0;
+	}
+
+	.project-main {
+		overflow: visible; /* Deixa crescer com a página */
+		height: auto;
+	}
+
+	.board-large {
+		overflow: visible;
+		min-height: 30rem; /* Dá um tamanho mínimo agradável no mobile */
+	}
+
+	.tasks-grid {
+		overflow-y: visible; /* Scroll vai para o container principal */
+	}
+
+	.project-topbar {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
+	.status-toggles {
+		width: 100%; /* Botões do status ocupam a linha toda */
+		justify-content: space-between;
+	}
+
+	.status-toggle-btn {
+		flex: 1; /* Divide o espaço igualmente */
+		justify-content: center;
+	}
+}
+
+/* =========================================================
+   AÇÕES DO CARD DE PROJETO (Header, Dot e Editar)
+   ========================================================= */
+
+/* Agrupa o título e as ações na mesma linha */
+.project-container .project-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	margin-bottom: 12px;
+}
+
+/* Remove a margem do h2 já que o container pai (project-header) cuida disso */
+.project-container .project-header h2 {
+	margin: 0;
+}
+
+/* Container para o botão e o dot */
+.project-container .card-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+/* Indicador (Dot moderno) */
+.project-container .project-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--border-default);
+	flex: 0 0 auto;
+	transition:
+		background 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+/* Acende o dot ao passar o mouse no card inteiro */
+.project-container:hover .project-dot {
+	background: var(--accent);
+	box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Botão de Editar Projeto */
+.btn-edit-project {
+	background: transparent;
+	border: none;
+	color: var(--text-secondary);
+	cursor: pointer;
+	padding: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 6px;
+
+	/* Fica oculto até o hover no card para um visual mais limpo */
+	opacity: 0;
+	transform: translateX(5px);
+	transition: all 0.2s ease;
+}
+
+.btn-edit-project svg {
+	width: 16px;
+	height: 16px;
+}
+
+/* Mostra o botão ao passar o mouse no card */
+.project-container:hover .btn-edit-project {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Efeito dourado ao passar o mouse ESPECIFICAMENTE no botão de editar */
+.btn-edit-project:hover {
+	color: var(--accent);
+	background: rgba(196, 164, 90, 0.1);
+}
+
+/* =========================================================
+   ATTACHED FILES MODAL (Overlay e Container)
+   ========================================================= */
+
+/* Overlay de Fundo (Cobre a tela inteira com blur) */
+.attached-files-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(10, 12, 16, 0.85); /* Fundo escuro semitransparente (baseado no bg-void) */
+	backdrop-filter: blur(8px); /* Efeito de vidro fosco */
+	-webkit-backdrop-filter: blur(8px);
+	z-index: 9999;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+
+	/* Animação suave de entrada */
+	animation: fadeInOverlay 0.2s ease-out forwards;
+}
+
+@keyframes fadeInOverlay {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* O "Card" do Modal no centro da tela */
+.attached-files-container::before {
+	content: "Arquivos Anexados";
+	display: block;
+	width: 50%;
+
+	background: var(--bg-surface);
+	color: var(--text-primary);
+	font-family: "DM Serif Display", serif;
+	font-size: 1.5rem;
+	padding: 1rem 0;
+	border: 1px solid var(--border-default);
+	border-bottom: none;
+	border-radius: var(--radius-card) var(--radius-card) 0 0;
+	box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+	text-align: center;
+}
+
+/* Transformando a lista em um container interno bonito */
+.attached-files-container ul {
+	width: 50%;
+
+	max-height: 60vh; /* Limita a altura para não vazar da tela se tiver muitos arquivos */
+	overflow-y: auto;
+
+	background: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-top: 1px solid rgba(255, 255, 255, 0.05); /* Divisor sutil do título */
+	border-radius: 0 0 var(--radius-card) var(--radius-card);
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+
+	margin: 0;
+	padding: 1rem 1.5rem 1.5rem;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+/* Customizando a barra de rolagem dos arquivos */
+.attached-files-container ul::-webkit-scrollbar {
+	width: 6px;
+}
+.attached-files-container ul::-webkit-scrollbar-track {
+	background: transparent;
+	margin: 10px 0;
+}
+.attached-files-container ul::-webkit-scrollbar-thumb {
+	background: var(--border-default);
+	border-radius: 10px;
+}
+.attached-files-container ul::-webkit-scrollbar-thumb:hover {
+	background: var(--text-muted);
+}
+
+/* Estilo individual de cada arquivo (Item da Lista) */
+.attached-files-container li {
+	display: flex;
+	align-items: center;
+	padding: 1rem 1.25rem;
+	background: var(--bg-sunken);
+	border: 1px solid var(--border-default);
+	border-radius: 8px;
+
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	font-weight: 500;
+	color: var(--text-secondary);
+
+	transition: all 0.2s ease;
+	cursor: pointer; /* Prepara para caso você queira fazer download ao clicar */
+	word-break: break-all; /* Impede nomes muito longos de quebrarem o layout */
+}
+
+/* Ícone de arquivo genérico antes do nome */
+.attached-files-container li::before {
+	content: "📄";
+	margin-right: 12px;
+	font-size: 1.1rem;
+	opacity: 0.7;
+	transition: opacity 0.2s ease;
+}
+
+.attached-files-container li:hover {
+	background: var(--bg-hover);
+	border-color: var(--accent);
+	color: var(--text-primary);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.attached-files-container li:hover::before {
+	opacity: 1;
+}
+
+.close-attached-files {
+	margin-top: 0.5rem;
+	padding: 0.3rem 0.5rem;
+	border-radius: 0.2rem;
+	border: none;
+	outline: none;
+
+	cursor: pointer;
+}

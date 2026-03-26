@@ -1,0 +1,139 @@
+@import url(styles/login.css);
+@import url(styles/workspaces.css);
+@import url(styles/workspace.css);
+@import url(styles/header.css);
+@import url(styles/footer.css);
+@import url(styles/signup.css);
+@import url(styles/projectPage.css);
+@import url(styles/homepage.css);
+@import url(styles/account.css);
+@import url(styles/myData.css);
+@import url(styles/editWorkspace.css);
+@import url(styles/newWorkspace.css);
+@import url(styles/task.css);
+@import url(styles/deleteWorkspace.css);
+@import url(styles/newProject.css);
+@import url(styles/editProject.css);
+@import url(styles/invitations.css);
+@import url(styles/notifications.css);
+@import url(styles/newTask.css);
+@import url(styles/messages.css);
+@import url(styles/globalChat.css);
+@import url(styles/errorElement.css);
+@import url(styles/taskPage.css);
+@import url(styles/editTask.css);
+@import url(styles/settingsAccount.css);
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* ── Variáveis de Design ────────────────────────────────── */
+:root {
+	--bg-void: #0a0c10; /* Fundo: quase preto, mas com tom índigo muito sutil */
+	--bg-surface: #10131a; /* Card: cinza-azulado escuro premium */
+	--bg-sunken: #080a0f; /* Input: mais escuro que o card — efeito "afundado" */
+	--bg-hover: #161b26; /* Hover de superfícies */
+
+	--border-default: #1e2535; /* Borda sutil, fria */
+	--border-focus: #b8975a; /* Borda foco: ouro envelhecido */
+	--border-error: #7f1d1d;
+
+	--text-primary: #e8eaf0; /* Quase branco, temperatura fria */
+	--text-secondary: #8892a4; /* Cinza-azulado apagado */
+	--text-muted: #3d4558; /* Placeholder */
+	--text-inverse: #0a0c10;
+
+	--accent: #c4a45a; /* Ouro levemente acobreado — menos brilhante, mais sóbrio */
+	--accent-hover: #b8975a;
+	--accent-glow: rgba(196, 164, 90, 0.12);
+
+	--error-text: #f87171;
+	--error-bg: rgba(127, 29, 29, 0.25);
+	--error-border: #991b1b;
+
+	--radius-card: 14px;
+	--radius-input: 8px;
+	--radius-btn: 8px;
+
+	--shadow-card: 0 32px 64px -16px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+body {
+	margin: 0;
+	padding: 1rem;
+	min-height: 100vh;
+
+	/* 1. Transforma o body em flex para ele conseguir esticar o #root */
+	display: flex;
+	flex-direction: column;
+
+	background-color: var(--bg-void);
+	background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196, 164, 90, 0.06) 0%, transparent 70%), linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+	background-size:
+		100% 100%,
+		40px 40px,
+		40px 40px;
+	font-family:
+		"DM Sans",
+		-apple-system,
+		BlinkMacSystemFont,
+		sans-serif;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+
+	flex: 1;
+	width: 100%;
+	gap: 1rem;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+/* ── Botão de Voltar ────────────────────────────────────── */
+.btn-back {
+	align-self: flex-start; /* Garante que o botão não estique na largura */
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+
+	background: transparent;
+	border: none;
+	padding: 4px 8px 4px 0;
+
+	color: var(--text-secondary);
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	font-weight: 500;
+	cursor: pointer;
+
+	transition: color 0.2s ease;
+}
+
+/* Seta do botão de voltar */
+.btn-back::before {
+	content: "←";
+	font-size: 1.1rem;
+	transition: transform 0.2s ease;
+}
+
+.btn-back:hover {
+	color: var(--accent);
+}
+
+.btn-back:hover::before {
+	transform: translateX(-4px);
+}

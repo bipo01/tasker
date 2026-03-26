@@ -1,0 +1,40 @@
+/* =========================================================
+   FOOTER — TEMA PREMIUM (INDIGO & GOLD)
+   ========================================================= */
+
+.app-footer {
+	width: 100%;
+	padding: 32px 24px 24px;
+
+	/* O margin-top: auto garante que, se o container principal for flex, 
+       o footer sempre será empurrado para o final da página */
+	margin-top: auto;
+
+	text-align: center;
+	border-top: 1px solid var(--border-default);
+}
+
+.app-footer p {
+	margin: 0;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.85rem;
+	color: var(--text-muted); /* Fica bem discreto para não roubar a atenção */
+	letter-spacing: 0.02em;
+	transition: color 0.3s ease;
+}
+
+/* O nome do app ganha um tom levemente mais claro por padrão */
+.footer-brand {
+	color: var(--text-secondary);
+	font-weight: 500;
+	transition: color 0.2s ease;
+}
+
+/* Um "easter egg" visual: ao passar o mouse, a marca e o texto brilham em ouro */
+.app-footer:hover p {
+	color: var(--text-secondary);
+}
+
+.app-footer:hover .footer-brand {
+	color: var(--accent);
+}

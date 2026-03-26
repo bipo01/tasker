@@ -1,0 +1,142 @@
+/* =========================================================
+   LAYOUT DE CONTA — TEMA PREMIUM (INDIGO & GOLD)
+   ========================================================= */
+
+.account-layout {
+	display: flex;
+	gap: 32px;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 32px 24px;
+
+	/* Faz o layout ocupar toda a altura restante da tela */
+}
+
+/* =========================================================
+   SIDEBAR (Menu Lateral)
+   ========================================================= */
+.account-sidebar {
+	width: 280px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.sidebar-header {
+	padding-bottom: 16px;
+	border-bottom: 1px solid var(--border-default);
+}
+
+.sidebar-title {
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.4rem;
+	font-weight: 700;
+	color: var(--text-primary);
+	margin: 0;
+}
+
+/* Navegação */
+.sidebar-nav {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+/* Itens do Menu (NavLinks) */
+.nav-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px;
+
+	text-decoration: none;
+	border-radius: var(--radius-btn);
+	background: transparent;
+	border: 1px solid transparent; /* Para evitar pulos no layout quando ficar ativo */
+
+	transition: all 0.2s ease;
+}
+
+.nav-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--text-secondary);
+	transition: color 0.2s ease;
+}
+
+.nav-icon svg {
+	width: 20px;
+	height: 20px;
+}
+
+.nav-text {
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	font-weight: 500;
+	color: var(--text-secondary);
+	flex-grow: 1; /* Empurra o badge para a direita */
+	transition: color 0.2s ease;
+}
+
+/* Efeitos de Hover no Menu */
+.nav-item:hover {
+	background: rgba(255, 255, 255, 0.03);
+	color: var(--text-primary);
+}
+
+.nav-item:hover .nav-icon,
+.nav-item:hover .nav-text {
+	color: var(--text-primary);
+}
+
+/* === ITEM ATIVO (Rota atual) === */
+.nav-item.active {
+	background: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	/* Um detalhe elegante: uma bordinha dourada só na esquerda indicando seleção */
+	border-left: 3px solid var(--accent);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item.active .nav-icon,
+.nav-item.active .nav-text {
+	color: var(--accent);
+	font-weight: 600;
+}
+
+/* Badge Lateral (Pílula) */
+.nav-badge {
+	background-color: var(--accent);
+	color: var(--bg-surface);
+
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.75rem;
+	font-weight: 700;
+
+	min-width: 24px;
+	height: 24px;
+	padding: 0 8px;
+	border-radius: 12px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================================
+   ÁREA PRINCIPAL (Onde os filhos carregam)
+   ========================================================= */
+.account-content {
+	flex-grow: 1;
+	background: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+	padding: 32px;
+
+	/* Leve sombra para dar profundidade de "painel" */
+	box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.3);
+}

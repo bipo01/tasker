@@ -1,0 +1,532 @@
+/* =========================================================
+   TASK CARD — Grid Layout Baseado em REM
+   ========================================================= */
+
+.task-card {
+	cursor: pointer;
+	background: var(--bg-sunken);
+	border: 0.0625rem solid var(--border-default);
+	border-radius: 0.75rem;
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	transition:
+		transform 0.2s ease,
+		border-color 0.2s ease,
+		box-shadow 0.2s ease;
+
+	/* Necessário para a faixa colorida lateral */
+	position: relative;
+}
+
+/* ───────────────────────────────────────────────────────
+   IDENTIFICADORES DE STATUS (A faixa lateral esquerda)
+   ─────────────────────────────────────────────────────── */
+.task-card::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 0.25rem; /* Espessura da faixa */
+	transition: background-color 0.3s ease;
+}
+
+.card-todo::before {
+	background-color: #b8975a;
+}
+.card-doing::before {
+	background-color: #4f86ff;
+}
+.card-done::before {
+	background-color: #22c55e;
+}
+
+/* Efeitos de Hover no Card (A faixa "acende") */
+.card-todo:hover {
+	border-color: rgba(184, 151, 90, 0.4);
+	box-shadow: 0 0.5rem 1rem -0.25rem rgba(184, 151, 90, 0.15);
+}
+.card-doing:hover {
+	border-color: rgba(79, 134, 255, 0.4);
+	box-shadow: 0 0.5rem 1rem -0.25rem rgba(79, 134, 255, 0.15);
+}
+.card-done:hover {
+	border-color: rgba(34, 197, 94, 0.4);
+	box-shadow: 0 0.5rem 1rem -0.25rem rgba(34, 197, 94, 0.15);
+}
+
+.task-card:hover {
+	transform: translateY(-0.125rem);
+}
+
+/* ───────────────────────────────────────────────────────
+   INTERNO DO CARD
+   ─────────────────────────────────────────────────────── */
+.task-header {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.task-title-row {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 0.75rem;
+}
+
+.task-title {
+	margin: 0;
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	line-height: 1.4;
+}
+
+.task-private {
+	color: var(--text-secondary);
+}
+
+.task-badges {
+	display: flex;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+
+.task-badge {
+	font-size: 0.7rem;
+	font-weight: 700;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.375rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+/* NOVO: Badge do Status e Bolinha */
+.status-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	background: transparent;
+	border: 0.0625rem solid var(--border-default);
+	color: var(--text-secondary);
+}
+
+.status-dot {
+	width: 0.4rem;
+	height: 0.4rem;
+	border-radius: 50%;
+}
+
+.dot-todo {
+	background: #b8975a;
+	box-shadow: 0 0 0.25rem rgba(184, 151, 90, 0.5);
+}
+.dot-doing {
+	background: #4f86ff;
+	box-shadow: 0 0 0.25rem rgba(79, 134, 255, 0.5);
+}
+.dot-done {
+	background: #22c55e;
+	box-shadow: 0 0 0.25rem rgba(34, 197, 94, 0.5);
+}
+
+/* Badges Antigas */
+.tag-badge {
+	background: rgba(196, 164, 90, 0.1);
+	color: var(--accent);
+	border: 0.0625rem solid rgba(196, 164, 90, 0.2);
+}
+
+.prio-high {
+	background: rgba(255, 59, 48, 0.1);
+	color: #ff3b30;
+	border: 0.0625rem solid rgba(255, 59, 48, 0.2);
+}
+.prio-med,
+.prio-medium {
+	background: rgba(255, 149, 0, 0.1);
+	color: #ff9500;
+	border: 0.0625rem solid rgba(255, 149, 0, 0.2);
+}
+.prio-low {
+	background: rgba(52, 199, 89, 0.1);
+	color: #34c759;
+	border: 0.0625rem solid rgba(52, 199, 89, 0.2);
+}
+
+.task-desc {
+	margin: 0;
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+	line-height: 1.5;
+	/* Trunca o texto se for muito longo */
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.task-meta-info {
+	display: flex;
+	gap: 1.5rem;
+	padding-top: 0.5rem;
+	justify-content: space-between;
+}
+
+.meta-block {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.meta-title {
+	font-size: 0.7rem;
+	color: var(--text-secondary);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.meta-data {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+.task-footer {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding-top: 1rem;
+	border-top: 0.0625rem solid var(--border-default);
+	margin-top: auto;
+}
+
+.task-people {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.task-creator {
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+}
+
+.task-creator strong {
+	color: var(--text-primary);
+}
+
+.task-admins {
+	display: flex;
+	align-items: center;
+}
+
+.admin-avatar {
+	width: 1.75rem;
+	height: 1.75rem;
+	border-radius: 50%;
+	background: var(--bg-surface);
+	color: var(--text-primary);
+	font-size: 0.65rem;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 0.125rem solid var(--bg-sunken);
+	margin-left: -0.5rem;
+}
+.admin-avatar:first-child {
+	margin-left: 0;
+}
+
+.files-length {
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	cursor: pointer;
+	font-size: 1rem;
+
+	background: rgba(255, 255, 255, 0.03);
+	border: 0.0625rem solid var(--border-default);
+	padding: 0.375rem 0.625rem;
+	border-radius: 0.5rem;
+	font-size: 0.75rem;
+	color: var(--text-secondary);
+	width: fit-content;
+	&:hover {
+		color: var(--accent);
+	}
+}
+
+.task-attach-form {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: rgba(255, 255, 255, 0.02);
+	padding: 0.5rem 0.75rem;
+	border-radius: 0.5rem;
+	border: 0.0625rem dashed var(--border-default);
+}
+
+.file-input-hidden {
+	display: none;
+}
+
+.file-input-label {
+	display: flex;
+	align-items: center;
+	gap: 0.375rem;
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	cursor: pointer;
+	transition: color 0.2s;
+}
+.file-input-label:hover {
+	color: var(--accent);
+}
+
+.btn-attach {
+	background: transparent;
+	border: none;
+	color: var(--accent);
+	font-weight: 600;
+	font-size: 0.85rem;
+	cursor: pointer;
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	transition: background 0.2s;
+}
+.btn-attach:hover {
+	background: rgba(196, 164, 90, 0.1);
+}
+
+/* ───────────────────────────────────────────────────────
+   LISTA DE ARQUIVOS SELECIONADOS
+   ─────────────────────────────────────────────────────── */
+.task-selected-files {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 1rem;
+	padding-top: 1rem;
+	border-top: 0.0625rem dashed var(--border-default);
+}
+
+.selected-file-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	background: rgba(255, 255, 255, 0.03);
+	border: 0.0625rem solid var(--border-default);
+	padding: 0.375rem 0.625rem;
+	border-radius: 0.5rem;
+	font-size: 0.75rem;
+	color: var(--text-secondary);
+	max-width: 100%;
+
+	/* Trunca o nome do arquivo se for muito longo */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.selected-file-chip .ico-small {
+	flex-shrink: 0;
+	color: var(--accent);
+}
+
+/* Ajuste no botão de attach para estado desabilitado */
+.btn-attach:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+	background: transparent;
+}
+
+/* =========================================================
+   BOTÕES DE AÇÃO (Estilo macOS Contextual)
+   ========================================================= */
+
+.task-mac-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.mac-buttons-group {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.mac-btn {
+	width: 0.875rem;
+	height: 0.875rem;
+	border-radius: 50%;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition:
+		background-color 0.2s ease,
+		transform 0.1s ease;
+}
+
+.mac-btn:active {
+	transform: scale(0.9);
+}
+
+/* ───────────────────────────────────────────────────────
+   Cores Base dos Botões (Semânticas com os status)
+   ─────────────────────────────────────────────────────── */
+.action-delete {
+	background-color: #ff5f56;
+} /* Vermelho macOS */
+.action-stop {
+	background-color: #b8975a;
+} /* Amarelo/Dourado (A começar) */
+.action-start {
+	background-color: #4f86ff;
+} /* Azul (Em andamento) */
+.action-complete {
+	background-color: #22c55e;
+} /* Verde (Concluída) */
+
+/* ───────────────────────────────────────────────────────
+   Ícones Internos (Aparecem no hover do grupo)
+   ─────────────────────────────────────────────────────── */
+.mac-btn::before,
+.mac-btn::after {
+	content: "";
+	position: absolute;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+/* Revela os ícones ao dar hover em qualquer botão do grupo */
+.mac-buttons-group:hover .mac-btn::before,
+.mac-buttons-group:hover .mac-btn::after {
+	opacity: 1;
+}
+
+/* 1. Ícone do X (Deletar) */
+.action-delete::before,
+.action-delete::after {
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 0.4rem;
+	height: 0.0625rem;
+}
+.action-delete::before {
+	transform: rotate(45deg);
+}
+.action-delete::after {
+	transform: rotate(-45deg);
+}
+
+/* 2. Ícone do - (Parar / Retroceder) */
+.action-stop::before {
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 0.4rem;
+	height: 0.0625rem;
+}
+
+/* 3. Ícone de Play ► (Começar / Recomeçar) */
+.action-start::before {
+	width: 0;
+	height: 0;
+	border-top: 0.2rem solid transparent;
+	border-bottom: 0.2rem solid transparent;
+	border-left: 0.3rem solid rgba(0, 0, 0, 0.6);
+	margin-left: 0.08rem; /* Centraliza visualmente o triângulo */
+}
+
+/* 4. Ícone de Check ✔ (Concluir) */
+.action-complete::before {
+	width: 0.18rem;
+	height: 0.35rem;
+	border-bottom: 0.08rem solid rgba(0, 0, 0, 0.6);
+	border-right: 0.08rem solid rgba(0, 0, 0, 0.6);
+	transform: rotate(45deg);
+	margin-bottom: 0.08rem; /* Centraliza visualmente o check */
+}
+
+/* Hover individual para escurecer o botão levemente */
+.mac-btn:hover {
+	filter: brightness(0.85);
+}
+
+/* Container para alinhar o botão no rodapé */
+.task-footer-actions {
+	display: flex;
+	justify-content: flex-end; /* Alinha à direita */
+	margin-top: 0.5rem;
+	padding-top: 0.5rem;
+	border-top: 0.0625rem dashed var(--border-default);
+}
+
+/* O botão de detalhes */
+.btn-open-task {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	background: transparent;
+	color: var(--text-secondary);
+	border: 1px solid var(--border-default);
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.8rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.btn-open-task:hover {
+	background: var(--bg-sunken);
+	color: var(--text-primary);
+	border-color: var(--text-muted);
+}
+
+.details-attached-files ul {
+	width: 100%;
+
+	background: var(--bg-surface);
+	border: 1px solid var(--border-default);
+
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+	border-radius: 0.5rem;
+
+	margin: 0;
+	padding: 1rem 1.5rem;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+.details-attached-files li {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 1.25rem;
+	background: var(--bg-sunken);
+	border: 1px solid var(--border-default);
+	border-radius: 8px;
+
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	font-weight: 500;
+	color: var(--text-secondary);
+
+	transition: all 0.2s ease;
+	word-break: break-all; /* Impede nomes muito longos de quebrarem o layout */
+}
+
+.details-download-button:hover {
+	transform: scale(1.05);
+	color: #b8975a;
+	cursor: pointer;
+}

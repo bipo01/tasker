@@ -1,0 +1,285 @@
+/* =========================================================
+   WORKSPACES — TEMA PREMIUM (INDIGO & GOLD)
+   ========================================================= */
+
+.workspaces-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+	flex: 1;
+}
+
+/* Container Principal */
+.workspaces-container main {
+	width: 100%;
+
+	margin: 0 auto;
+	flex: 1;
+
+	background: var(--bg-surface);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+	box-shadow: var(--shadow-card);
+
+	padding: 44px 44px 42px;
+	position: relative;
+}
+
+/* Header */
+.workspaces-container main > header {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 22px;
+	padding-bottom: 26px;
+	border-bottom: 1px solid var(--border-default);
+}
+
+.workspaces-container main > header h1 {
+	margin: 0;
+	font-family: "DM Serif Display", serif;
+	font-size: 2.65rem;
+	font-weight: 400;
+	letter-spacing: -0.02em;
+	line-height: 1.05;
+	color: var(--text-primary);
+}
+
+.workspaces-container main > header p {
+	margin: 10px 0 0;
+	max-width: 72ch;
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.02rem;
+	color: var(--text-secondary);
+	line-height: 1.55;
+}
+
+/* Grid */
+.workspaces-container main > section {
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 24px;
+}
+
+/* Card */
+.workspace-card {
+	text-decoration: none;
+	background: var(--bg-sunken);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-card);
+	padding: 24px;
+	min-height: 172px;
+	display: flex;
+	flex-direction: column;
+
+	transition:
+		transform 0.2s ease,
+		border-color 0.2s ease,
+		background-color 0.2s ease;
+	cursor: pointer;
+}
+
+.workspace-card:hover {
+	transform: translateY(-4px);
+	border-color: var(--border-focus);
+	background: var(--bg-hover);
+	box-shadow:
+		0 12px 30px -10px rgba(0, 0, 0, 0.8),
+		0 0 0 1px var(--accent-glow);
+}
+
+/* Cabeçalho do card */
+.workspace-card > div {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	margin-bottom: 12px;
+}
+
+.workspace-card > div > h3 {
+	margin: 0;
+	font-family: "DM Sans", sans-serif;
+	font-size: 1.15rem;
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+/* Indicador (Substitui a barra dourada antiga por um 'dot' moderno) */
+.workspace-card > div > span {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--border-default);
+	flex: 0 0 auto;
+	transition:
+		background 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.workspace-card:hover > div > span {
+	background: var(--accent);
+	box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Descrição */
+.workspace-card > p {
+	margin: 0;
+	color: var(--text-secondary);
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.95rem;
+	line-height: 1.65;
+	flex-grow: 1;
+}
+
+/* Chips (Membros) */
+.workspace-card > ul {
+	margin: 20px 0 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.workspace-card > ul > li {
+	padding: 6px 12px;
+	font-family: "DM Sans", sans-serif;
+	font-size: 0.8rem;
+	font-weight: 500;
+	color: var(--accent);
+
+	background: rgba(196, 164, 90, 0.05); /* Fundo sutil derivado do ouro */
+	border: 1px solid var(--border-default);
+	border-radius: 999px;
+
+	transition: all 0.2s ease;
+}
+
+.workspace-card:hover > ul > li {
+	border-color: var(--accent-glow);
+	background: var(--accent-glow);
+}
+
+/* Botão Primário (Ouro/Cobre) */
+.btn-primary {
+	text-decoration: none;
+	background-color: var(--accent);
+	color: var(--text-inverse); /* Usa a cor escura para dar contraste no fundo dourado */
+	border: none;
+	border-radius: var(--radius-btn);
+	padding: 10px 22px;
+	font-family: "DM Sans", sans-serif;
+	font-weight: 600;
+	font-size: 0.95rem;
+	cursor: pointer;
+	transition:
+		background-color 0.2s ease,
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+
+	/* Um brilho sutil usando o seu accent-glow */
+	box-shadow: 0 4px 12px var(--accent-glow);
+
+	/* Evita que o botão encolha no flexbox */
+	flex-shrink: 0;
+}
+
+.btn-primary:hover {
+	background-color: var(--accent-hover);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(196, 164, 90, 0.25); /* Um glow um pouco mais forte no hover */
+}
+
+/* Ajuste no header para alinhar o texto e o botão perfeitamente */
+.workspaces-container main > header {
+	align-items: center; /* Muda de flex-end para center para o botão ficar bem alinhado */
+}
+
+/* =========================================================
+   AÇÕES DO CARD (Editar + Indicador)
+   ========================================================= */
+.card-actions {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+/* Botão de Editar Workspace */
+.btn-edit-workspace {
+	background: transparent;
+	border: none;
+	color: var(--text-secondary);
+	cursor: pointer;
+	padding: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 6px;
+
+	/* Fica oculto até o hover no card para um visual mais limpo */
+	opacity: 0;
+	transform: translateX(5px);
+	transition: all 0.2s ease;
+}
+
+.btn-edit-workspace svg {
+	width: 16px;
+	height: 16px;
+}
+
+/* Mostra o botão ao passar o mouse no card */
+.workspace-card:hover .btn-edit-workspace {
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Efeito ao passar o mouse ESPECIFICAMENTE no botão de editar */
+.btn-edit-workspace:hover {
+	color: var(--accent);
+	background: rgba(196, 164, 90, 0.1); /* Leve fundo dourado */
+}
+
+.projects-container {
+	padding: 1rem 0;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+	.workspaces-container {
+		padding: 26px 20px 52px;
+	}
+
+	.workspaces-container main {
+		padding: 34px 26px 30px;
+	}
+
+	.workspaces-container main > header h1 {
+		font-size: 2.25rem;
+	}
+}
+
+@media (max-width: 520px) {
+	.workspaces-container {
+		padding: 22px 14px 44px;
+	}
+
+	.workspaces-container main {
+		padding: 26px 16px 22px;
+	}
+
+	.workspaces-container main > header {
+		padding-bottom: 18px;
+	}
+
+	.workspaces-container main > header h1 {
+		font-size: 1.95rem;
+	}
+
+	.workspaces-container main > section {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+}

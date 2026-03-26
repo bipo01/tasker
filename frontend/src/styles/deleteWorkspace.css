@@ -1,0 +1,91 @@
+/* Remove os estilos padrão do dialog e cria o card do modal */
+.delete-workspace-dialog {
+	border: none;
+	border-radius: 8px;
+	padding: 24px;
+	max-width: 30%;
+	width: 90%;
+	background-color: #ffffff;
+	box-shadow: 0 10px 25px rgba(200, 148, 148, 0.2);
+	font-family:
+		system-ui,
+		-apple-system,
+		sans-serif;
+	color: #333;
+	margin: 15rem auto;
+
+	/* Textos do conteúdo */
+	.delete-dialog-content h3 {
+		margin-top: 0;
+		margin-bottom: 8px;
+		font-size: 1.25rem;
+		color: #111827;
+	}
+
+	.delete-dialog-content p {
+		margin-top: 0;
+		margin-bottom: 24px;
+		font-size: 0.95rem;
+		color: #4b5563;
+		line-height: 1.5;
+	}
+
+	/* Alinhamento dos botões */
+	.delete-dialog-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+	}
+
+	.delete-dialog-actions form {
+		margin: 0;
+	}
+
+	/* Estilo base para os botões */
+	.delete-dialog-actions button {
+		padding: 10px 16px;
+		border-radius: 6px;
+		font-size: 0.9rem;
+		font-weight: 500;
+		cursor: pointer;
+		border: none;
+		transition:
+			background-color 0.2s ease,
+			transform 0.1s ease;
+	}
+
+	.delete-dialog-actions button:active {
+		transform: scale(0.98);
+	}
+
+	/* Botão de Cancelar (Neutro) */
+	.btn-cancel {
+		background-color: #f3f4f6;
+		color: #374151;
+		border: 1px solid rgba(0, 0, 0, 0.092) !important;
+	}
+
+	.btn-cancel:hover {
+		background-color: #e5e7eb;
+	}
+
+	/* Botão de Excluir (Alerta/Perigo) */
+	.btn-danger {
+		background-color: #ef4444;
+		color: #ffffff;
+	}
+
+	.btn-danger:hover {
+		background-color: #dc2626;
+	}
+
+	h4 {
+		margin: 1rem 0;
+	}
+}
+
+/* Fundo escuro/desfocado quando o modal está aberto usando .showModal() */
+.delete-workspace-dialog::backdrop {
+	background-color: rgba(0, 0, 0, 0.694);
+	backdrop-filter: blur(2px);
+}

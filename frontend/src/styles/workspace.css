@@ -1,0 +1,202 @@
+/* =========================================================
+   WORKSPACE (DETALHES/PROJETOS) — TEMA PREMIUM
+   ========================================================= */
+
+/* 1. Container Pai */
+.workspace-container {
+	display: flex;
+	flex-direction: column;
+	gap: 32px; /* Aumentei levemente o respiro geral */
+	width: 100%;
+	padding: 24px 0;
+
+	/* ── Cabeçalho (Título, Descrição e Botão) ──────────────── */
+	.workspace-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap; /* Garante que não quebre layout no celular */
+		gap: 16px;
+		padding-bottom: 16px;
+		border-bottom: 1px solid var(--border-default);
+	}
+
+	.workspace-info {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.workspace-info h2 {
+		margin: 0;
+		font-family: "DM Sans", sans-serif;
+		font-size: 2rem;
+		font-weight: 700;
+		color: #ffffff;
+		letter-spacing: -0.02em;
+	}
+
+	.workspace-info h3 {
+		margin: 0;
+		font-family: "DM Sans", sans-serif;
+		font-size: 1.1rem;
+		font-weight: 400;
+		color: var(--text-secondary);
+	}
+
+	/* ── Botão de Novo Projeto ──────────────────────────────── */
+	.btn-new-project {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 10px 20px;
+
+		background-color: var(--accent); /* Usa a cor de destaque do seu tema */
+		color: #000000; /* Texto escuro contrasta bem com cores 'premium' como dourado/neon */
+		text-decoration: none;
+		font-family: "DM Sans", sans-serif;
+		font-size: 0.95rem;
+		font-weight: 600;
+
+		border-radius: 8px;
+		border: 1px solid transparent;
+		transition: all 0.2s ease;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	}
+
+	.btn-new-project:hover {
+		transform: translateY(-2px);
+		background-color: var(--accent-glow);
+		box-shadow: 0 6px 16px var(--accent-glow);
+		color: #ffffff;
+	}
+
+	.btn-new-project:active {
+		transform: translateY(0);
+	}
+
+	/* ── Estado Vazio (Sem projetos) ────────────────────────── */
+	.empty-state {
+		text-align: center;
+		padding: 64px 24px;
+		background: var(--bg-sunken);
+		border: 1px dashed var(--border-default);
+		border-radius: var(--radius-card);
+		transition: border-color 0.2s ease;
+	}
+
+	.empty-state:hover {
+		border-color: var(--border-focus);
+	}
+
+	.empty-state p {
+		margin: 0;
+		color: var(--text-secondary);
+		font-family: "DM Sans", sans-serif;
+		font-size: 1.1rem;
+	}
+
+	/* ── Grid de Projetos ───────────────────────────────────── */
+	.projects-container {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 24px;
+		width: 100%;
+		padding: 1rem;
+	}
+
+	/* ── Card do Projeto (Componente <Project />) ───────────── */
+	/* Mantive suas classes originais para o Card intactas, apenas ajustei a identação */
+	.project-container {
+		background: var(--bg-sunken);
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-card);
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		transition:
+			transform 0.2s ease,
+			border-color 0.2s ease,
+			background-color 0.2s ease;
+	}
+
+	.project-container:hover {
+		transform: translateY(-4px);
+		border-color: var(--border-focus);
+		background: var(--bg-hover);
+		box-shadow:
+			0 12px 30px -10px rgba(0, 0, 0, 0.8),
+			0 0 0 1px var(--accent-glow);
+	}
+
+	.project-container h2 {
+		margin: 0 0 12px 0;
+		font-family: "DM Sans", sans-serif;
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		transition: color 0.2s ease;
+	}
+
+	.project-container:hover h2 {
+		color: var(--accent);
+	}
+
+	.project-container small {
+		display: inline-block;
+		align-self: flex-start;
+		padding: 4px 10px;
+		margin-bottom: 16px;
+		background-color: var(--accent-glow);
+		color: var(--accent);
+		border: 1px solid rgba(196, 164, 90, 0.2);
+		border-radius: 6px;
+		font-family: "DM Sans", sans-serif;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.project-container p {
+		margin: 0 0 20px 0;
+		color: var(--text-secondary);
+		font-family: "DM Sans", sans-serif;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		flex-grow: 1;
+	}
+
+	.project-container ul {
+		margin: 0;
+		padding: 16px 0 0 0;
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		border-top: 1px solid var(--border-default);
+	}
+
+	.project-container ul li {
+		padding: 4px 10px;
+		font-family: "DM Sans", sans-serif;
+		font-size: 0.75rem;
+		font-weight: 500;
+		color: var(--text-primary);
+		background: rgba(255, 255, 255, 0.02);
+		border: 1px solid var(--border-default);
+		border-radius: 999px;
+		transition: border-color 0.2s ease;
+	}
+
+	.project-container:hover ul li {
+		border-color: rgba(196, 164, 90, 0.3);
+	}
+
+	.loading-text {
+		color: var(--text-secondary);
+		font-family: "DM Sans", sans-serif;
+		padding: 24px;
+	}
+}
