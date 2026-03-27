@@ -103,11 +103,25 @@ export async function findUsers(req, res) {
 }
 
 export async function getData(req, res) {
-	const { rowCount: workspaces } = await db.query("SELECT * FROM fs_tasker_workspaces WHERE users_id @> ARRAY[$1::int]", [req.user.id]);
-	const { rowCount: projects } = await db.query("SELECT * FROM fs_tasker_projects WHERE users_id @> ARRAY[$1::int]", [req.user.id]);
+	const { rows: workspaces } = await db.query("SELECT * FROM fs_tasker_workspaces WHERE users_id @> ARRAY[$1::int]", [req.user.id]);
+	const workspaces_ids = [...new Set(workspaces.map((w) => w.id))];
+
+	let { rows: projects } = await db.query("SELECT * FROM fs_tasker_projects WHERE (users_id @> ARRAY[$1::int]) OR (workspace_id = ANY($2::int[])) OR (admins_id @> ARRAY[$1::int])", [req.user.id, workspaces_ids]);
+
+	projects = projects.filter((project) => {
+		if (!project.private) return true;
+
+		const workspace = workspaces.find((w) => w.id === project.workspace_id);
+		if (workspace.admins_id.includes(req.user.id)) return true;
+
+		if (project.admins_id.includes(req.user.id) || project.users_id.includes(req.user.id)) return true;
+
+		return false;
+	});
+
 	const { rowCount: tasks } = await db.query("SELECT * FROM fs_tasker_tasks WHERE owners_id @> ARRAY[$1::int]", [req.user.id]);
 
-	return res.status(200).json({ workspaces, projects, tasks });
+	return res.status(200).json({ workspaces: workspaces.length, projects: projects.length, tasks });
 }
 
 export async function editProfile(req, res) {
